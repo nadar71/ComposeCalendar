@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import com.squaredem.composecalendar.ComposeCalendar
 import com.squaredem.composecalendardemo.ui.theme.ComposeCalendarDemoTheme
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,11 +77,29 @@ private fun MainActivityContent() {
             }
         }
 
-        if (showDialog.value) {
+        /*if (showDialog.value) {
             ComposeCalendar(
                 onDone = {
                     selectedDate.value = it
                     showDialog.value = false
+                },
+                onDismiss = {
+                    showDialog.value = false
+                }
+            )
+        }*/
+
+        if (showDialog.value) {
+            ComposeCalendar(
+                minDate = LocalDate.parse(
+                    "01/01/2021",  // TODO : calculate 1y and half from now
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                maxDate = LocalDate.now().plusDays(1),
+                onDone = { it: LocalDate ->
+                    // saveDateSelected(it, filterScreenViewModel)
+                    showDialog.value = false
+                    // daysLeft = filterScreenViewModel.getDaysLeft()
+                    // daysPassedPercentage = filterScreenViewModel.getDaysPassedPercentage()
                 },
                 onDismiss = {
                     showDialog.value = false
