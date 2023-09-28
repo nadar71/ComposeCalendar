@@ -1,8 +1,9 @@
 buildscript {
     ext {
         compose_compiler_version = '1.4.3'
-        compose_version = '1.4.3'
-        material3_version = '1.1.0'
+        compose_version          = '1.4.3'
+        compose_bom_vers         = '2023.05.00'
+        material3_version        = '1.1.0'
     }
 }
 
